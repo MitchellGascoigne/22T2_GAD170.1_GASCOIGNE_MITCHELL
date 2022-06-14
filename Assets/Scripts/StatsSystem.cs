@@ -58,13 +58,13 @@ public class StatsSystem : MonoBehaviour
         // rhythm should be based off our agility and be converted at a rate of 1 : 0.5.
 
         style = (int)(strength * strengthMultiplier);
-        luck = (int)(intelligence * 1.5f);
+        float luckFloat  = intelligence * 1.5f;
         rhythm = (int)(agility * 0.5f);
        
 
         // Debug out our current dancing stat values (style, luck, rhythm)
         Debug.Log("Style = " + style);
-        Debug.Log("Luck = " + luck);
+        Debug.Log("Luck = " + luckFloat);
         Debug.Log("Rhythm = " + rhythm);
         // now let's imagine that our level has increased; and we've been granted 10 new stat points.
         // let's distribute those stats amoungst our strength and agility and intelligence.

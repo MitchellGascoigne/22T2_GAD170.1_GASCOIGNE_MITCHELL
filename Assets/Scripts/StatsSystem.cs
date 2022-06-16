@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// This class holds all the logic for our stats system, so that includes logic to handle generating starting physical stats
@@ -28,9 +29,9 @@ public class StatsSystem : MonoBehaviour
     {
         // set out agility, strength and intelligence to a random number between zero and ten.
         // BONUS! let's try taking our stats away from a pool of stats, i.e. 20 total, distributing this amoungst all the stats.
-        strength = 8;
-        agility = 5;
-        intelligence = 7;
+        strength = Random.Range(0,11);
+        agility = Random.Range(0, 11);
+        intelligence = Random.Range(0, 11);
 
         // Debug out your current physical stat values (strength, agility, intelligence).
         Debug.Log("Strength =" + strength);
@@ -59,21 +60,39 @@ public class StatsSystem : MonoBehaviour
 
         style = (int)(strength * strengthMultiplier);
         float luckFloat  = intelligence * 1.5f;
-        rhythm = (int)(agility * 0.5f);
+        float rhythmFloat = agility * 0.5f;
        
 
         // Debug out our current dancing stat values (style, luck, rhythm)
         Debug.Log("Style = " + style);
         Debug.Log("Luck = " + luckFloat);
-        Debug.Log("Rhythm = " + rhythm);
+        Debug.Log("Rhythm = " + rhythmFloat);
+
         // now let's imagine that our level has increased; and we've been granted 10 new stat points.
         // let's distribute those stats amoungst our strength and agility and intelligence.
-        int additionalPoints = 10;
+
+        int additionalPoints = 10 / 3;
+        float upgradeStrength = (strength + additionalPoints);
+        float upgradeAgility = (agility + additionalPoints);
+        float upgradeIntelligence = (intelligence + additionalPoints);
+
 
         // Debug out our new physical stat values
+        Debug.Log ("You have levelled up to strength: " + upgradeStrength);
+        Debug.Log ("You have levelled up to agility: " + upgradeAgility);
+        Debug.Log("You have levelled up to intelligence: " + upgradeIntelligence);
 
         // let's recalculate our style, luck and rhytmn as our initial stats have changed.
 
+        int newStyle = (int)(upgradeStrength * strengthMultiplier);
+        int newRhythm = (int) (upgradeAgility * strengthMultiplier);
+        int newLuck = (int) (upgradeIntelligence * strengthMultiplier);
+
         // Debug out our new dancing stat values
+
+        Debug.Log("New stat value for style is: " + newStyle);
+        Debug.Log("New stat value for Rhythm is: " + newRhythm);
+        Debug.Log("New stat value for Luck is: " + newLuck);
+
     }
 }
